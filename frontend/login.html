@@ -86,6 +86,8 @@
     .form-footer { margin-top: 25px; text-align: center; font-size: 14px; color: var(--muted); }
     .form-footer a { color: var(--green); font-weight: 700; }
 
+    .error-message { color: #e74c3c; font-size: 13px; margin-bottom: 15px; text-align: center; display: none; }
+
     /* FOOTER */
     .footer { background: var(--dark); color: #a3b1b8; padding: 90px 0 40px; font-size: 14px; }
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,.1); }
@@ -178,7 +180,9 @@
             <h3>Log In</h3>
             <p>Enter your credentials to access your account.</p>
 
-            <form id="loginForm" onsubmit="event.preventDefault(); window.location.href='loan-options.html';">
+            <div id="loginError" class="error-message"></div>
+
+            <form id="loginForm">
               <div class="form-group">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" placeholder="you@example.com" required>
@@ -247,6 +251,42 @@
       </div>
     </div>
   </footer>
+
+  <script src="api-config.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorDiv = document.getElementById('loginError');
+      
+      errorDiv.style.display = 'none';
+      
+      try {
+        const response = await fetch(`${API_URL}/api/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.success) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          window.location.href = 'loan-options.html';
+        } else {
+          errorDiv.textContent = data.error || 'Login failed. Please try again.';
+          errorDiv.style.display = 'block';
+        }
+      } catch (err) {
+        errorDiv.textContent = 'Unable to connect to server. Please try again later.';
+        errorDiv.style.display = 'block';
+      }
+    });
+  </script>
 
 </body>
 </html>
