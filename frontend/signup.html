@@ -51,9 +51,6 @@
     .btn { display: inline-flex; align-items: center; justify-content: center; border: none; padding: 15px 25px; font-weight: 700; font-size: 13px; cursor: pointer; transition: .25s ease; }
     .btn-primary { color: var(--navy); background: var(--green); }
     .btn-primary:hover { background: #c8ef49; transform: translateY(-2px); }
-    .btn-outline { color: white; border: 1px solid rgba(255,255,255,.7); background: transparent; }
-    .btn-outline:hover { background: white; color: var(--navy); }
-    .menu-toggle { display: none; background: none; border: 0; }
 
     /* HERO */
     .hero { min-height: 480px; position: relative; display: flex; align-items: center; background: linear-gradient(90deg, rgba(5, 28, 43, .96), rgba(5, 28, 43, .68), rgba(5, 28, 43, .18)), url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85") center/cover; }
@@ -88,10 +85,12 @@
     .form-group input, .form-group select { width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; background: #fafaf8; color: var(--text); outline: none; transition: border-color .2s; }
     .form-group input:focus, .form-group select:focus { border-color: var(--green); background: white; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .form-submit { width: 100%; padding: 16px; font-size: 15px; margin-top: 10px; cursor: pointer; color: var(--navy); background: var(--green); font-weight: 700; }
+    .form-submit { width: 100%; padding: 16px; font-size: 15px; margin-top: 10px; cursor: pointer; color: var(--navy); background: var(--green); font-weight: 700; border: none; }
     .form-submit:hover { background: #c8ef49; transform: translateY(-2px); }
     .form-footer { margin-top: 20px; text-align: center; font-size: 14px; color: var(--muted); }
     .form-footer a { color: var(--green); font-weight: 700; }
+
+    .error-message { color: #e74c3c; font-size: 13px; margin-bottom: 15px; display: none; }
 
     /* FOOTER */
     .footer { background: var(--dark); color: #a3b1b8; padding: 90px 0 40px; font-size: 14px; }
@@ -205,6 +204,8 @@
             <h3>Register Today</h3>
             <p>Please enter your details to create your secure account.</p>
 
+            <div id="signupError" class="error-message"></div>
+
             <form id="signupForm">
               <div class="form-row">
                 <div class="form-group">
@@ -231,59 +232,8 @@
                 <label for="location">Location</label>
                 <select id="location" required>
                   <option value="">Please select</option>
-                  <option value="jersey">Jersey</option>
-                  <option value="guernsey">Guernsey</option>
-                  <option disabled>──────────</option>
-                  <option>Alabama</option>
-                  <option>Alaska</option>
-                  <option>Arizona</option>
-                  <option>Arkansas</option>
-                  <option>California</option>
-                  <option>Colorado</option>
-                  <option>Connecticut</option>
-                  <option>Delaware</option>
-                  <option>Florida</option>
-                  <option>Georgia</option>
-                  <option>Hawaii</option>
-                  <option>Idaho</option>
-                  <option>Illinois</option>
-                  <option>Indiana</option>
-                  <option>Iowa</option>
-                  <option>Kansas</option>
-                  <option>Kentucky</option>
-                  <option>Louisiana</option>
-                  <option>Maine</option>
-                  <option>Maryland</option>
-                  <option>Massachusetts</option>
-                  <option>Michigan</option>
-                  <option>Minnesota</option>
-                  <option>Mississippi</option>
-                  <option>Missouri</option>
-                  <option>Montana</option>
-                  <option>Nebraska</option>
-                  <option>Nevada</option>
-                  <option>New Hampshire</option>
-                  <option>New Jersey</option>
-                  <option>New Mexico</option>
-                  <option>New York</option>
-                  <option>North Carolina</option>
-                  <option>North Dakota</option>
-                  <option>Ohio</option>
-                  <option>Oklahoma</option>
-                  <option>Oregon</option>
-                  <option>Pennsylvania</option>
-                  <option>Rhode Island</option>
-                  <option>South Carolina</option>
-                  <option>South Dakota</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Utah</option>
-                  <option>Vermont</option>
-                  <option>Virginia</option>
-                  <option>Washington</option>
-                  <option>West Virginia</option>
-                  <option>Wisconsin</option>
-                  <option>Wyoming</option>
+                  <option value="Jersey">Jersey</option>
+                  <option value="Guernsey">Guernsey</option>
                 </select>
               </div>
 
@@ -298,7 +248,7 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn form-submit">Create Account</button>
+              <button type="submit" class="btn form-submit">Register Now</button>
 
               <div class="form-footer">
                 Already have an account? <a href="login.html">Log in here</a>
@@ -349,6 +299,61 @@
       </div>
     </div>
   </footer>
+
+  <script src="api-config.js"></script>
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const location = document.getElementById('location').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const errorDiv = document.getElementById('signupError');
+      
+      errorDiv.style.display = 'none';
+      
+      if (password !== confirmPassword) {
+        errorDiv.textContent = 'Passwords do not match.';
+        errorDiv.style.display = 'block';
+        return;
+      }
+      
+      try {
+        const response = await fetch(`${API_URL}/api/auth/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: `${firstName} ${lastName}`,
+            email,
+            phone,
+            location,
+            password
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.success) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          alert('Registration successful!');
+          window.location.href = 'loan-options.html';
+        } else {
+          errorDiv.textContent = data.error || 'Registration failed. Please try again.';
+          errorDiv.style.display = 'block';
+        }
+      } catch (err) {
+        errorDiv.textContent = 'Unable to connect to server. Please try again later.';
+        errorDiv.style.display = 'block';
+      }
+    });
+  </script>
 
 </body>
 </html>
