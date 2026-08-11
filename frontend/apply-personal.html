@@ -15,7 +15,6 @@
       --navy: #061c2b;
       --dark: #09283a;
       --green: #0569AD;
-      --light-green: #0589CF;
       --cream: #f5f3ec;
       --white: #ffffff;
       --text: #18303d;
@@ -34,6 +33,184 @@
 
     /* HEADER */
     .site-header { background: var(--white); position: relative; z-index: 1000; border-bottom: 1px solid #edf0ee; }
+    .header-inner { min-height: 88px; display: flex; align-items: center; gap: 30px; }
+    .logo { display: flex; align-items: center; gap: 10px; white-space: nowrap; flex-shrink: 0; text-decoration: none; }
+    .logo img { width: 34px; height: 34px; object-fit: contain; flex-shrink: 0; }
+    .logo-text { font-family: "Montserrat", sans-serif; font-size: 30px; font-weight: 600; letter-spacing: -1.5px; color: #686A70; white-space: nowrap; }
+
+    /* APPLICATION SECTION */
+    .app-section { padding: 60px 0 100px; background: var(--cream); }
+    .app-container { max-width: 800px; margin: 0 auto; }
+    
+    .app-header { margin-bottom: 40px; text-align: center; }
+    .app-header h1 { color: var(--navy); font-size: 36px; letter-spacing: -1.5px; margin-bottom: 10px; }
+    .app-header p { color: var(--muted); font-size: 16px; }
+
+    .app-card { background: white; padding: 50px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,.04); }
+    
+    .form-section-title { font-size: 20px; color: var(--navy); font-weight: 700; margin: 40px 0 20px; padding-bottom: 10px; border-bottom: 2px solid var(--cream); }
+    .form-section-title:first-child { margin-top: 0; }
+    
+    .form-group { margin-bottom: 25px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .form-group label span { color: #e74c3c; margin-left: 3px; }
+    
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 15px; background: #fafaf8; color: var(--text); outline: none; transition: .2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); background: white; }
+    
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+    
+    .btn-submit { width: 100%; padding: 20px; font-size: 16px; margin-top: 20px; cursor: pointer; color: var(--navy); background: var(--green); font-weight: 800; border: none; text-transform: uppercase; letter-spacing: 1px; }
+    .btn-submit:hover { background: #c8ef49; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: .3s ease; }
+
+    /* SUCCESS MESSAGE */
+    #successMessage { display: none; text-align: center; }
+    .success-icon { font-size: 64px; color: var(--green); margin-bottom: 20px; }
+    .success-card { background: #f0f7f4; border: 1px solid #d4e8df; padding: 30px; margin-top: 20px; text-align: left; }
+    .success-card h4 { color: var(--navy); margin-bottom: 15px; font-weight: 700; }
+    .success-card p { font-size: 15px; margin-bottom: 10px; color: var(--text); }
+    .email-highlight { font-weight: 700; color: var(--green); text-decoration: underline; }
+
+    .btn-track { display: inline-block; margin-top: 20px; padding: 15px 30px; background: var(--navy); color: white; text-decoration: none; font-weight: 700; border-radius: 4px; }
+
+    /* FOOTER */
+    .footer { background: var(--dark); color: #a3b1b8; padding: 60px 0 40px; text-align: center; }
+    
+    @media (max-width: 768px) {
+      .form-row { grid-template-columns: 1fr; }
+      .app-card { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Close Finance Logo" onerror="this.style.display='none'">
+        <span class="logo-text">Close Finance</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="app-section">
+    <div class="container app-container">
+      
+      <div id="formContainer">
+        <div class="app-header">
+          <h1>Personal Loan Application</h1>
+          <p>Complete the form below to apply for your personal loan</p>
+        </div>
+
+        <div class="app-card">
+          <form id="personalLoanForm">
+            <!-- Personal Information -->
+            <h2 class="form-section-title">Personal Information</h2>
+            <div class="form-group">
+              <label for="fullName">Full Name <span>*</span></label>
+              <input type="text" id="fullName" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number <span>*</span></label>
+                <input type="tel" id="phone" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address <span>*</span></label>
+                <input type="email" id="email" required>
+              </div>
+            </div>
+
+            <!-- Loan Details -->
+            <h2 class="form-section-title">Loan Details</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="loanAmount">Loan Amount <span>*</span></label>
+                <input type="number" id="loanAmount" required>
+              </div>
+              <div class="form-group">
+                <label for="loanTerm">Preferred Loan Term <span>*</span></label>
+                <select id="loanTerm" required>
+                  <option value="">Select term</option>
+                  <option value="12">12 Months</option>
+                  <option value="24">24 Months</option>
+                  <option value="36">36 Months</option>
+                  <option value="48">48 Months</option>
+                  <option value="60">60 Months</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="loanPurpose">What is the purpose of this loan? <span>*</span></label>
+              <input type="text" id="loanPurpose" required>
+            </div>
+
+            <!-- History -->
+            <h2 class="form-section-title">History</h2>
+            <div class="form-group">
+              <label for="addressHistory">Previous Addresses (Last 2 years) <span>*</span></label>
+              <textarea id="addressHistory" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="employmentHistory">Employment History <span>*</span></label>
+              <textarea id="employmentHistory" rows="3" required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit Application</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Success Message -->
+      <div id="successMessage">
+        <div class="success-icon">✓</div>
+        <h1>Application Received!</h1>
+        <div class="success-card">
+          <h4>Next Steps: Verification Required</h4>
+          <p>Please email your <strong>ID (Front and Back)</strong> and a <strong>Selfie</strong> to: <span class="email-highlight">info@financils.com</span></p>
+        </div>
+        <a href="loan-status.html" class="btn-track">Track My Loan</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="api-config.js"></script>
+  <script>
+    const form = document.getElementById('personalLoanForm');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const token = localStorage.getItem('token');
+      if (!token) { alert('Please log in first'); window.location.href='login.html'; return; }
+
+      const body = {
+        fullName: document.getElementById('fullName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        loanAmount: document.getElementById('loanAmount').value,
+        loanPurpose: document.getElementById('loanPurpose').value,
+        loanTerm: document.getElementById('loanTerm').value,
+        addressHistory: document.getElementById('addressHistory').value,
+        employmentHistory: document.getElementById('employmentHistory').value
+      };
+
+      try {
+        const res = await fetch(`${API_URL}/api/loans/personal`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('formContainer').style.display = 'none';
+          document.getElementById('successMessage').style.display = 'block';
+          window.scrollTo(0, 0);
+        } else { alert(data.error); }
+      } catch (err) { alert('Failed to connect to server'); }
+    });
+  </script>
+</body>
+</html>
     .header-inner { min-height: 88px; display: flex; align-items: center; gap: 30px; }
     .logo { display: flex; align-items: center; gap: 10px; white-space: nowrap; flex-shrink: 0; text-decoration: none; }
     .logo img { width: 34px; height: 34px; object-fit: contain; flex-shrink: 0; }
