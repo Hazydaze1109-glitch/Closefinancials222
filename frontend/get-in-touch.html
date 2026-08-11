@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get in Touch | Close Finance | United States</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #061c2b;
+      --dark: #09283a;
+      --green: #0569AD;
+      --light-green: #0589CF;
+      --cream: #f5f3ec;
+      --white: #ffffff;
+      --text: #18303d;
+      --muted: #64747d;
+      --border: #dce2df;
+      --container: 1180px;
+      --radius: 4px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Inter", sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    .container { width: min(1180px, calc(100% - 48px)); margin: auto; }
+
+    /* HEADER */
+    .site-header { background: var(--white); position: relative; z-index: 1000; border-bottom: 1px solid #edf0ee; }
+    .header-inner { min-height: 88px; display: flex; align-items: center; gap: 30px; }
+    .logo { display: flex; align-items: center; gap: 10px; white-space: nowrap; flex-shrink: 0; text-decoration: none; }
+    .logo img { width: 34px; height: 34px; object-fit: contain; flex-shrink: 0; }
+    .logo-text { font-family: "Montserrat", sans-serif; font-size: 30px; font-weight: 600; letter-spacing: -1.5px; color: #686A70; white-space: nowrap; }
+    .main-nav { display: flex; align-items: center; gap: 30px; margin-left: auto; white-space: nowrap; }
+    .main-nav > a, .nav-dropdown button { border: 0; background: transparent; color: var(--navy); font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; padding: 0; }
+    .nav-dropdown { position: relative; white-space: nowrap; }
+    .nav-dropdown button { display: flex; align-items: center; gap: 5px; }
+    .nav-dropdown button span { color: #7b8a8f; margin-left: 2px; font-size: 11px; }
+    .dropdown-menu { position: absolute; top: calc(100% + 20px); left: -15px; width: 220px; background: white; box-shadow: 0 15px 40px rgba(0, 0, 0, .12); padding: 12px; display: none; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 9px 12px; font-size: 13px; white-space: nowrap; }
+    .dropdown-menu a:hover { background: var(--cream); }
+    .header-actions { display: flex; align-items: center; gap: 28px; margin-left: 5px; flex-shrink: 0; }
+    .payment-link { font-size: 12px; font-weight: 600; white-space: nowrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; border: none; padding: 15px 25px; font-weight: 700; font-size: 13px; cursor: pointer; transition: .25s ease; }
+    .btn-primary { color: var(--navy); background: var(--green); }
+    .btn-primary:hover { background: #c8ef49; transform: translateY(-2px); }
+    .btn-outline { color: white; border: 1px solid rgba(255,255,255,.7); background: transparent; }
+    .btn-outline:hover { background: white; color: var(--navy); }
+    .menu-toggle { display: none; background: none; border: 0; }
+
+    /* HERO */
+    .hero { min-height: 480px; position: relative; display: flex; align-items: center; background: linear-gradient(90deg, rgba(5, 28, 43, .96), rgba(5, 28, 43, .68), rgba(5, 28, 43, .18)), url("https://images.unsplash.com/photo-1423599995115-f15efc1a2d61?auto=format&fit=crop&w=1800&q=85") center/cover; }
+    .hero-overlay { position: absolute; inset: 0; }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-text { width: min(700px, 100%); color: white; }
+    .eyebrow { text-transform: uppercase; font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--green); margin-bottom: 17px; }
+    .hero h1 { font-size: clamp(40px, 5vw, 68px); line-height: 1.05; letter-spacing: -3px; margin-bottom: 25px; }
+    .hero h1 span { color: var(--green); }
+    .hero-description { max-width: 580px; font-size: 18px; color: #e8edef; margin-bottom: 35px; }
+
+    /* CONTACT CONTENT SECTION */
+    .contact-section { padding: 100px 0; background: var(--cream); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    
+    .contact-info-card { background: white; padding: 40px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,.04); margin-bottom: 30px; }
+    .contact-info-card h3 { color: var(--navy); font-size: 24px; margin-bottom: 20px; letter-spacing: -0.5px; }
+    .branch-box { margin-bottom: 25px; }
+    .branch-box h4 { font-size: 16px; color: var(--navy); margin-bottom: 8px; font-weight: 700; }
+    .branch-box p { color: var(--muted); font-size: 15px; margin-bottom: 6px; }
+    .branch-box a { color: var(--green); font-weight: 700; }
+    .branch-box a:hover { text-decoration: underline; }
+
+    .hours-list { list-style: none; }
+    .hours-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #edf0ee; font-size: 14px; color: var(--muted); }
+    .hours-list li span:last-child { color: var(--navy); font-weight: 600; }
+
+    /* FORM */
+    .contact-form-card { background: white; padding: 40px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,.04); }
+    .contact-form-card h3 { color: var(--navy); font-size: 24px; margin-bottom: 15px; letter-spacing: -0.5px; }
+    .contact-form-card > p { color: var(--muted); font-size: 14px; margin-bottom: 25px; }
+    
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; background: #fafaf8; color: var(--text); outline: none; transition: border-color .2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); background: white; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-submit { width: 100%; padding: 16px; font-size: 15px; margin-top: 10px; cursor: pointer; }
+    .form-message { margin-top: 15px; font-size: 14px; font-weight: 600; text-align: center; }
+
+    /* BANK DETAILS SECTION */
+    .bank-section { padding: 80px 0; background: white; }
+    .bank-card { background: var(--cream); padding: 40px; border-left: 4px solid var(--green); max-width: 800px; margin: 0 auto; box-shadow: 0 5px 20px rgba(0,0,0,.03); }
+    .bank-card h3 { color: var(--navy); font-size: 22px; margin-bottom: 15px; }
+    .bank-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; font-size: 15px; }
+    .bank-grid p span { color: var(--muted); display: block; font-size: 13px; }
+    .bank-grid p strong { color: var(--navy); }
+
+    /* FOOTER */
+    .footer { background: var(--dark); color: #a3b1b8; padding: 90px 0 40px; font-size: 14px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .footer-brand .logo-text, .footer-logo { color: white; font-family: "Montserrat", sans-serif; font-size: 26px; font-weight: 600; margin-bottom: 15px; display: inline-block; }
+    .logo-close { color: white; }
+    .logo-finance { color: var(--green); }
+    .footer-brand p { max-width: 320px; margin-top: 15px; color: #9cb0b8; }
+    .footer-column h4 { color: white; font-size: 16px; margin-bottom: 20px; font-weight: 700; }
+    .footer-column a { display: block; margin-bottom: 12px; color: #a3b1b8; transition: color .2s; }
+    .footer-column a:hover { color: white; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 40px; flex-wrap: wrap; gap: 20px; font-size: 13px; }
+    .footer-bottom div { display: flex; gap: 25px; }
+    .footer-bottom a { color: #a3b1b8; }
+    .footer-bottom a:hover { color: white; }
+
+    /* COOKIE BANNER */
+    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--navy); color: white; padding: 24px 32px; z-index: 9999; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -10px 30px rgba(0,0,0,.2); gap: 20px; }
+    .cookie-banner h3 { font-size: 18px; margin-bottom: 5px; }
+    .cookie-banner p { font-size: 14px; color: #c6d1d5; max-width: 600px; }
+    .cookie-actions { display: flex; gap: 15px; flex-shrink: 0; }
+    .cookie-actions button { padding: 12px 20px; border-radius: var(--radius); font-weight: 700; font-size: 13px; cursor: pointer; border: none; }
+    #denyCookies { background: transparent; color: white; border: 1px solid rgba(255,255,255,.3); }
+    #denyCookies:hover { background: rgba(255,255,255,.1); }
+
+    @media (max-width: 992px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .cookie-banner { flex-direction: column; align-items: flex-start; }
+      .main-nav { display: none; }
+      .bank-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Close Finance Logo" onerror="this.style.display='none'">
+        <span class="logo-text">Close Finance</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="who-we-are.html">Who we are</a>
+        <div class="nav-dropdown">
+          <button>Business funding <span>⌄</span></button>
+          <div class="dropdown-menu">
+            <a href="business-funding.html">Overview</a>
+            <a href="business-funding.html#machinery">Machinery</a>
+            <a href="business-funding.html#office-upgrades">Office upgrades</a>
+            <a href="business-funding.html#hospitality">Hospitality</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button>Personal loans <span>⌄</span></button>
+          <div class="dropdown-menu">
+            <a href="personal-loans.html">Overview</a>
+            <a href="personal-loans.html#home-improvements">Home improvements</a>
+            <a href="personal-loans.html#holidays">Holidays</a>
+            <a href="personal-loans.html#tuition">University tuition fees</a>
+          </div>
+        </div>
+        <a href="who-we-help.html">Who we help</a>
+        <a href="news.html">News</a>
+        <a href="contact.html" style="color: var(--green);">Get in touch</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="apply.html" class="btn btn-primary">Apply for a loan</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <div class="hero-text">
+          <p class="eyebrow">Contact Us</p>
+          <h1>
+            Get in
+            <span>touch.</span>
+          </h1>
+          <p class="hero-description">
+            Whether by phone, email, or popping into our Jersey or Guernsey offices – our specialist team is here to help.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="branches">
+      <div class="container contact-grid">
+        
+        <div>
+          <!-- Branch & Phone info -->
+          <div class="contact-info-card">
+            <h3>Branch Contacts</h3>
+            
+            <div class="branch-box">
+              <h4>Jersey Branch</h4>
+              <p>Conway House, Conway Street, St Helier, Jersey JE4 5SR</p>
+              <p>Phone: <a href="tel:+441534737341">01534 737341</a></p>
+            </div>
+
+            <div class="branch-box">
+              <h4>Guernsey Branch</h4>
+              <p>22 Smith Street, St Peter Port, Guernsey GY1 2JQ</p>
+              <p>Phone: <a href="tel:+441481740240">01481 740240</a></p>
+            </div>
+
+            <div class="branch-box">
+              <h4>Collections & Payment Support</h4>
+              <p>Phone: <a href="tel:+441534879201">01534 879201</a></p>
+            </div>
+          </div>
+
+          <!-- Opening times -->
+          <div class="contact-info-card">
+            <h3>Opening Times</h3>
+            <p style="color: var(--muted); font-size: 14px; margin-bottom: 15px;">Offices and phone lines are open during these times (closed weekends & bank holidays).</p>
+            <ul class="hours-list">
+              <li><span>Monday</span> <span>9:00am – 5:00pm</span></li>
+              <li><span>Tuesday</span> <span>9:00am – 5:00pm</span></li>
+              <li><span>Wednesday</span> <span>9:30am – 5:00pm</span></li>
+              <li><span>Thursday</span> <span>9:00am – 5:00pm</span></li>
+              <li><span>Friday</span> <span>9:00am – 5:00pm</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <!-- Enquiry Form -->
+          <div class="contact-form-card" id="enquiry">
+            <h3>Send us a message</h3>
+            <p>Fill out the form below and our team will get back to you promptly.</p>
+            
+            <form id="contactForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fullName">Full Name</label>
+                  <input type="text" id="fullName" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" placeholder="Your telephone" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="branch">Preferred Branch</label>
+                <select id="branch" required>
+                  <option value="">Please select</option>
+                  <option>Jersey Branch</option>
+                  <option>Guernsey Branch</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">How can we help you?</label>
+                <textarea id="message" rows="4" placeholder="Your message or enquiry details..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary form-submit">Send Message</button>
+              <p class="form-message" id="formMessage"></p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BANK DETAILS FOR PAYMENT -->
+    <section class="bank-section" id="payment">
+      <div class="container">
+        <div class="bank-card">
+          <h3>Making a Payment / Bank Details</h3>
+          <p style="color: var(--muted); font-size: 14px;">If you need to make a direct payment to your finance agreement, please use the following bank details and include your agreement number as the reference.</p>
+          
+          <div class="bank-grid">
+            <p><span>Bank:</span> <strong>RBSi</strong></p>
+            <p><span>Account Name:</span> <strong>Close Finance United States</strong></p>
+            <p><span>Sort Code:</span> <strong>16 58 93</strong></p>
+            <p><span>Account Number:</span> <strong>60388240</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo footer-logo">
+          <span class="logo-close">close</span>
+          <span class="logo-finance">finance</span>
+        </a>
+        <p>Finance for individuals and businesses across the United States.</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Finance</h4>
+        <a href="business-funding.html">Business funding</a>
+        <a href="personal-loans.html">Personal loans</a>
+        <a href="#">Motor finance</a>
+        <a href="#">Property finance</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Company</h4>
+        <a href="who-we-are.html">Who we are</a>
+        <a href="who-we-help.html">Who we help</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Get in touch</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Help</h4>
+        <a href="#">Help & support</a>
+        <a href="#">FAQs</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Complaints</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Close Finance United States. All rights reserved.</p>
+      <div>
+        <a href="#">Privacy</a>
+        <a href="#">Cookies</a>
+        <a href="#">Legal</a>
+        <a href="#">Fees and charges</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div>
+      <h3>Can we use optional cookies?</h3>
+      <p>Cookies help us keep our website safe and improve your experience. You can manage your cookie preferences at any time.</p>
+    </div>
+    <div class="cookie-actions">
+      <button id="denyCookies">Deny</button>
+      <button id="allowCookies" class="btn btn-primary">Allow all cookies</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menuToggle');
+      const mainNav = document.getElementById('mainNav');
+      if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+          mainNav.style.display = mainNav.style.display === 'flex' ? 'none' : 'flex';
+          mainNav.style.flexDirection = 'column';
+          mainNav.style.position = 'absolute';
+          mainNav.style.top = '100%';
+          mainNav.style.left = '0';
+          mainNav.style.right = '0';
+          mainNav.style.background = 'white';
+          mainNav.style.padding = '20px';
+          mainNav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+        });
+      }
+
+      const cookieBanner = document.getElementById('cookieBanner');
+      const allowCookies = document.getElementById('allowCookies');
+      const denyCookies = document.getElementById('denyCookies');
+      if (localStorage.getItem('cookie_consent') && cookieBanner) cookieBanner.style.display = 'none';
+      if (allowCookies) allowCookies.addEventListener('click', () => { localStorage.setItem('cookie_consent', 'allowed'); if(cookieBanner) cookieBanner.style.display = 'none'; });
+      if (denyCookies) denyCookies.addEventListener('click', () => { localStorage.setItem('cookie_consent', 'denied'); if(cookieBanner) cookieBanner.style.display = 'none'; });
+
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const formMessage = document.getElementById('formMessage');
+          if (formMessage) {
+            formMessage.style.color = '#769000';
+            formMessage.textContent = 'Thank you! Your message has been sent successfully. Our team will contact you shortly.';
+          }
+          contactForm.reset();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

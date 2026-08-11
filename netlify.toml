@@ -1,0 +1,17 @@
+[build]
+  command = "echo 'Frontend ready for deployment'"
+  publish = "frontend"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api:splat"
+  status = 200
+
+[context.production.environment]
+  REACT_APP_API_URL = "https://your-vercel-backend.vercel.app"
+
+[context.deploy-preview.environment]
+  REACT_APP_API_URL = "https://your-vercel-backend.vercel.app"
+
+[context.branch-deploy.environment]
+  REACT_APP_API_URL = "https://your-vercel-backend.vercel.app"

@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who We Are | Close Finance | United States</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Standalone CSS incorporating Close Finance design system and Who We Are layout */
+    :root {
+      --navy: #061c2b;
+      --dark: #09283a;
+      --green: #0569AD;
+      --light-green: #0589CF;
+      --cream: #f5f3ec;
+      --white: #ffffff;
+      --text: #18303d;
+      --muted: #64747d;
+      --border: #dce2df;
+      --container: 1180px;
+      --radius: 4px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 48px));
+      margin: auto;
+    }
+
+    /* HEADER */
+    .site-header {
+      background: var(--white);
+      position: relative;
+      z-index: 1000;
+      border-bottom: 1px solid #edf0ee;
+    }
+
+    .header-inner {
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .logo img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-family: "Montserrat", sans-serif;
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: -1.5px;
+      color: #686A70;
+      white-space: nowrap;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    .main-nav > a,
+    .nav-dropdown button {
+      border: 0;
+      background: transparent;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      padding: 0;
+    }
+
+    .nav-dropdown {
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .nav-dropdown button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-dropdown button span {
+      color: #7b8a8f;
+      margin-left: 2px;
+      font-size: 11px;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 20px);
+      left: -15px;
+      width: 220px;
+      background: white;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, .12);
+      padding: 12px;
+      display: none;
+    }
+
+    .nav-dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 9px 12px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .dropdown-menu a:hover {
+      background: var(--cream);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-left: 5px;
+      flex-shrink: 0;
+    }
+
+    .payment-link {
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      padding: 15px 25px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: .25s ease;
+    }
+
+    .btn-primary {
+      color: var(--navy);
+      background: var(--green);
+    }
+
+    .btn-primary:hover {
+      background: #c8ef49;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      color: white;
+      border: 1px solid rgba(255,255,255,.7);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: var(--navy);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 0;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 450px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(90deg, rgba(5, 28, 43, .96), rgba(5, 28, 43, .68), rgba(5, 28, 43, .18)), url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85") center/cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text {
+      width: min(620px, 100%);
+      color: white;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--green);
+      margin-bottom: 17px;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 6vw, 82px);
+      line-height: .98;
+      letter-spacing: -4px;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero-description {
+      max-width: 500px;
+      font-size: 18px;
+      color: #e8edef;
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+    }
+
+    /* INTRO */
+    .intro {
+      padding: 100px 0;
+      background: var(--cream);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(38px, 4vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -2.5px;
+    }
+
+    h2 span {
+      color: var(--green);
+    }
+
+    .intro-copy {
+      font-size: 18px;
+      color: #52656e;
+    }
+
+    .intro-copy p {
+      margin-bottom: 25px;
+    }
+
+    .text-link {
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 800;
+      border-bottom: 2px solid var(--green);
+      padding-bottom: 5px;
+    }
+
+    /* PROMISES / CHARTER */
+    .charter-section {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .section-heading {
+      margin-bottom: 50px;
+    }
+
+    .promise-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .promise-item {
+      background: var(--cream);
+      padding: 25px 30px;
+      border-left: 4px solid var(--green);
+      box-shadow: 0 5px 15px rgba(0,0,0,.03);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    /* TEAM SECTION */
+    .team-section {
+      padding: 100px 0;
+      background: #faf9f6;
+    }
+
+    .team-region {
+      margin-bottom: 80px;
+    }
+
+    .team-region:last-child {
+      margin-bottom: 0;
+    }
+
+    .region-title {
+      font-size: 32px;
+      color: var(--navy);
+      margin-bottom: 40px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--border);
+      letter-spacing: -1px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .team-card {
+      border: 1px solid var(--border);
+      background: var(--white);
+      padding: 35px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .25s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 20px 50px rgba(8, 30, 40, .08);
+      border-color: var(--green);
+    }
+
+    .team-info h3 {
+      color: var(--navy);
+      font-size: 20px;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    .team-role {
+      color: #769000;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+    }
+
+    .team-bio {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .team-meta {
+      border-top: 1px solid #edf0ee;
+      padding-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .team-phone {
+      color: var(--navy);
+    }
+
+    .team-actions {
+      display: flex;
+      gap: 15px;
+    }
+
+    .team-actions a {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      border-bottom: 1px solid var(--green);
+      padding-bottom: 2px;
+    }
+
+    /* TESTIMONIAL */
+    .testimonial {
+      padding: 100px 0;
+      background: var(--navy);
+      color: white;
+      text-align: center;
+    }
+
+    .stars {
+      color: #f5c518;
+      font-size: 24px;
+      margin-bottom: 20px;
+      letter-spacing: 5px;
+    }
+
+    .testimonial blockquote {
+      font-size: clamp(22px, 3vw, 32px);
+      max-width: 800px;
+      margin: 0 auto 25px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .testimonial .text-link {
+      color: white;
+      border-color: var(--green);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--dark);
+      color: #a3b1b8;
+      padding: 90px 0 40px;
+      font-size: 14px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .footer-brand .logo-text, .footer-logo {
+      color: white;
+      font-family: "Montserrat", sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    .logo-close { color: white; }
+    .logo-finance { color: var(--green); }
+
+    .footer-brand p {
+      max-width: 320px;
+      margin-top: 15px;
+      color: #9cb0b8;
+    }
+
+    .footer-column h4 {
+      color: white;
+      font-size: 16px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .footer-column a {
+      display: block;
+      margin-bottom: 12px;
+      color: #a3b1b8;
+      transition: color .2s;
+    }
+
+    .footer-column a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    .footer-bottom div {
+      display: flex;
+      gap: 25px;
+    }
+
+    .footer-bottom a {
+      color: #a3b1b8;
+    }
+
+    .footer-bottom a:hover {
+      color: white;
+    }
+
+    /* COOKIE BANNER */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--navy);
+      color: white;
+      padding: 24px 32px;
+      z-index: 9999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 -10px 30px rgba(0,0,0,.2);
+      gap: 20px;
+    }
+
+    .cookie-banner h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .cookie-banner p {
+      font-size: 14px;
+      color: #c6d1d5;
+      max-width: 600px;
+    }
+
+    .cookie-actions {
+      display: flex;
+      gap: 15px;
+      flex-shrink: 0;
+    }
+
+    .cookie-actions button {
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      border: none;
+    }
+
+    #denyCookies {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255,255,255,.3);
+    }
+
+    #denyCookies:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    @media (max-width: 992px) {
+      .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+      .cookie-banner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .main-nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Close Finance Logo" onerror="this.style.display='none'">
+        <span class="logo-text">Close Finance</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="who-we-are.html" style="color: var(--green);">Who we are</a>
+
+        <div class="nav-dropdown">
+ <button>
+    <a href="business-funding.html">Business funding</a>
+    <span>⌄</span>
+  </button>          <div class="dropdown-menu">
+            <a href="#">Overview</a>
+            <a href="#">Machinery</a>
+            <a href="#">Office upgrades</a>
+            <a href="#">Hospitality</a>
+            <a href="#">Fleet finance</a>
+            <a href="#">Web development</a>
+            <a href="#">Insurance premiums</a>
+            <a href="#">Property finance</a>
+          </div>
+        </div>
+
+        <div class="nav-dropdown">
+ <button>
+    <a href="personal-loans.html">Personal Loans</a>
+    <span>⌄</span>
+  </button>          <div class="dropdown-menu">
+            <a href="#">Overview</a>
+            <a href="#">Home improvements</a>
+            <a href="#">Holidays</a>
+            <a href="#">University tuition fees</a>
+            <a href="#">Motor finance</a>
+            <a href="#">Debt consolidation</a>
+            <a href="#">Weddings</a>
+            <a href="#">Property finance</a>
+          </div>
+        </div>
+
+        <a href="who-we-help.html">Who we help</a>
+        <a href="news.html">News</a>
+        <a href="get-in-touch.html">Get in touch</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="apply-for-loan.html" class="btn btn-primary">Apply for a loan</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <div class="hero-text">
+          <p class="eyebrow">About Close Finance</p>
+          <h1>
+            Who 
+            <span>we are</span>
+          </h1>
+          <p class="hero-description">
+            Your specialist finance team providing friendly, prompt, and professional services across the United States for over 50 years.
+          </p>
+          <div class="hero-buttons">
+            <a href="apply-for-loan.html" class="btn btn-primary">Apply for a loan</a>
+            <a href="#team" class="btn btn-outline">Meet our team</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO / OVERVIEW -->
+    <section class="intro" id="about-us">
+      <div class="container intro-grid">
+        <div>
+          <p class="eyebrow">Your specialist finance team</p>
+          <h2>
+            Flexible finance
+            <span>built on trust.</span>
+          </h2>
+        </div>
+
+        <div class="intro-copy">
+          <p>
+            Close Finance offer a range of flexible personal and business loans to individuals and businesses in the United States. We’ve been providing friendly, prompt, and professional services for over 50 years.
+          </p>
+          <p>
+            We understand that individuals and businesses want stability and reliability. As a market leader for personal and business loans in the United States, we’re committed to responsible lending.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMISES / CHARTER -->
+    <section class="charter-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Our customer charter</p>
+          <h2>At Close Finance, we promise to:</h2>
+        </div>
+
+        <div class="promise-grid">
+          <div class="promise-item">
+            Give honest and straightforward help
+          </div>
+          <div class="promise-item">
+            Always assess your circumstances to calculate what you can comfortably afford at the time of taking out a loan
+          </div>
+          <div class="promise-item">
+            Make business and personal loan decisions quickly and efficiently
+          </div>
+          <div class="promise-item">
+            Provide you with a professional and friendly financial service
+          </div>
+          <div class="promise-item">
+            Deliver clear solutions
+          </div>
+          <div class="promise-item">
+            Offer all our United States loan customers free and confidential consultations
+          </div>
+          <div class="promise-item" style="grid-column: span 2;">
+            Be a business you can trust
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR PEOPLE / TEAM -->
+    <section class="team-section" id="team">
+      <div class="container">
+        
+        <div class="section-heading" style="margin-bottom: 70px;">
+          <p class="eyebrow">Our people</p>
+          <h2>Meet our specialist team</h2>
+          <p style="color: var(--muted); margin-top: 15px; max-width: 700px; font-size: 17px;">
+            The success of our business relies on the quality of our people. Our team of specialists have a wealth of experience in finance and lending, ensuring we continue to deliver high standards of service.
+          </p>
+        </div>
+
+        <!-- JERSEY TEAM -->
+        <div class="team-region">
+          <h3 class="region-title">Jersey</h3>
+          
+          <div class="team-grid">
+            
+            <!-- Simon Winslow -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Simon Winslow</h3>
+                <div class="team-role">Managing Director</div>
+                <p class="team-bio">
+                  Simon’s career with Close Brothers spans ten years as UK Operations Director, overseeing multiple locations across the country. Now based full-time in the United States, he’s passionate about delivering customer-focused financial solutions and excited to lead the business into its next chapter. Simon’s already embracing island life, enjoying shorter commutes, more time outdoors and a better work-life balance.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01534 737341</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Stuart Stables -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Stuart Stables</h3>
+                <div class="team-role">Operations and Risk Director</div>
+                <p class="team-bio">
+                  Stuart has a wealth of experience in the finance industry as well as various other areas of the local business community having lived in Jersey for over 20 years. He has a passion for ensuring that Close Finance delivers an efficient, high-quality service, tailored to meet the varying needs of our clients and business partners in the United States.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01534 737341</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Graeme Hebenton -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Graeme Hebenton</h3>
+                <div class="team-role">Head of Commercial Lending</div>
+                <p class="team-bio">
+                  Graeme joined Close Finance, as part of the Jersey office, in 2023. He has over 40 years of experience in finance in the UK and Jersey, working in the banking sector. He has worked with many small and medium sized businesses, providing relationship management support and debt funding solutions. Graeme is a keen golfer and enjoys travelling.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01534 737341</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Cleone Steadman -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Cleone Steadman</h3>
+                <div class="team-role">Head of Personal Lending, Jersey</div>
+                <p class="team-bio">
+                  Cleone is responsible for the Jersey sales team. She works hard to bring new business to the company and manages our existing client base with strong interpersonal relationships, as well as managing our dealer and broker relationships. Cleone always has our customers’ interests at heart and consistently goes above and beyond.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01534 737341</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Stuart Butler -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Stuart Butler</h3>
+                <div class="team-role">Head of Business Development</div>
+                <p class="team-bio">
+                  Stuart has over 30 years banking and lending experience including over 20 years undertaking various customer relationship and team management roles in both Jersey and Guernsey. He works with our team leaders initiating and progressing new business initiatives in both the personal and commercial sectors.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01534 737341</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Marie Booth -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Marie Booth</h3>
+                <div class="team-role">Customer Relationship Manager</div>
+                <p class="team-bio">
+                  Marie has been with us since 2016. She works in our Jersey direct sales team, liaising closely with clients. From debt consolidation to home improvements, holidays to car finance, there isn’t anything Marie can’t support with. She loves spending time with her two dogs, Barney and Bobby.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01534 737341</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- John De La Mare -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>John De La Mare</h3>
+                <div class="team-role">Customer Relationship Manager</div>
+                <p class="team-bio">
+                  John brings over 30 years of experience in consumer lending, offering a wealth of knowledge and insight to our business. He is passionate about delivering excellent customer service and takes real pride in making sure every customer journey is seamless, efficient and delivered with a smile.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01534 737341</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Taylor Chateau -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Taylor Château</h3>
+                <div class="team-role">Customer Relationship Administrator</div>
+                <p class="team-bio">
+                  Taylor works in the Customer Relationship Team as an Administrator and spends her day working alongside our dealers and brokers to process applications across personal, business and motor lending. She is a keen entertainer singing for local band Inside Job and a huge adrenaline junkie!
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01534 737341</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Emilie Bresset -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Emilie Bresset</h3>
+                <div class="team-role">Customer Relationship Administrator</div>
+                <p class="team-bio">
+                  Emilie is a member of the Customer Relationship Administration team and serves as a key point of contact for our dealers and brokers. She is responsible for processing motor, personal, and commercial lending applications to a high standard, holding a degree in Bio-veterinary Science.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01534 737341</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Tristan Knill -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Tristan Knill</h3>
+                <div class="team-role">Customer Relationship Administrator</div>
+                <p class="team-bio">
+                  Tristan is part of the lending team in the Jersey office. Prior to joining Close Finance, he gained five years’ experience in the hospitality trade working in luxurious hotels and managing high end bars. Tristan’s goal is to transition those skills into the finance industry.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01534 737341</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Anamaria Le Verdier -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Anamaria Le Verdier</h3>
+                <div class="team-role">Credit Risk Manager</div>
+                <p class="team-bio">
+                  Anamaria has responsibility for the effective management of all credit related risks within Close Finance and ensuring the highest quality of loans being underwritten. Born in Transylvania in Romania, she moved to Jersey in 2015 after living in London.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01534 737341</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Andrew Ward -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Andrew Ward</h3>
+                <div class="team-role">Risk and Compliance Officer</div>
+                <p class="team-bio">
+                  Andy has been with Close Finance for over 15 years and currently works as our Risk & Compliance Officer. This entails working closely with colleagues, dealer and broker partners to deliver the best possible service while keeping the business safe and secure.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01534 737341</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- GUERNSEY TEAM -->
+        <div class="team-region" style="margin-top: 80px;">
+          <h3 class="region-title">Guernsey</h3>
+          
+          <div class="team-grid">
+            
+            <!-- Kevin Harris -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Kevin Harris</h3>
+                <div class="team-role">Director and Head of Guernsey</div>
+                <p class="team-bio">
+                  Kevin opened our Guernsey branch in 2006 and has managed it ever since. He works closely with the team to provide exceptional service to all our existing and potential new clients, along with ensuring we operate with professionalism, integrity and within all local regulations.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01481 740240</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Robbie Clayton -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Robbie Clayton</h3>
+                <div class="team-role">Head of Operations & Risk, CI; Branch Manager, Guernsey</div>
+                <p class="team-bio">
+                  Robbie has worked within the group since 2015. In 2022, Robbie joined our Guernsey branch as Branch Manager. He leads the Guernsey team and is also our Head of Operations and Risk, ensuring we remain compliant with current legislation and maintain business reputation.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01481 740240</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Lucy Hockey -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Lucy Hockey</h3>
+                <div class="team-role">Operations Administrator</div>
+                <p class="team-bio">
+                  Lucy joined Close Finance in July 2023 and has become an integral part of the team. Able to operate in all aspects of the business, Lucy’s skill set ensures our customers and introducers receive the best possible service. In her spare time, Lucy enjoys pilates and reading.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01481 740240</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Richard Elliott -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Richard Elliott</h3>
+                <div class="team-role">Head of Lending, Guernsey</div>
+                <p class="team-bio">
+                  Richard has over 10 years’ experience of working in the financial services sector in Guernsey. He is responsible for the lending team in Guernsey, which includes identifying new opportunities and customers, as well as looking for new opportunities in the local market.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01481 740240</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Justin Hagger -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Justin Hagger</h3>
+                <div class="team-role">Customer Relationship Manager</div>
+                <p class="team-bio">
+                  Having spent many years in the motor trade in various customer service positions, Justin knows good customer service and strives to provide this for our many customers, business introducers, dealers and brokers in Guernsey for motor finance, personal loans and business lending.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01481 740240</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Lucas Talbot -->
+            <article class="team-card">
+              <div class="team-info">
+                <h3>Lucas Talbot</h3>
+                <div class="team-role">Customer Relationship Administrator</div>
+                <p class="team-bio">
+                  Lucas joined the Close Finance team in January 2025, bringing with him a fresh perspective after completing his Business Management degree at the University of Hull. He is passionate about delivering outstanding service and supporting clients and dealer partners.
+                </p>
+              </div>
+              <div class="team-meta">
+                <span class="team-phone">01481 740240</span>
+                <div class="team-actions">
+                  <a href="mailto:info@closefinance.ci">Email</a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="testimonial">
+      <div class="container">
+        <p class="eyebrow" style="color: var(--green);">What our customers say</p>
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <blockquote>"Would you like to leave us your feedback?"</blockquote>
+        <a href="#" class="text-link" style="color: white;">Leave your feedback →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo footer-logo">
+          <span class="logo-close">close</span>
+          <span class="logo-finance">finance</span>
+        </a>
+        <p>Finance for individuals and businesses across the United States.</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Finance</h4>
+        <a href="#">Business funding</a>
+        <a href="#">Personal loans</a>
+        <a href="#">Motor finance</a>
+        <a href="#">Property finance</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Company</h4>
+        <a href="who-we-are.html">Who we are</a>
+        <a href="index.html#help">Who we help</a>
+        <a href="index.html#news">News</a>
+        <a href="#contact">Get in touch</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Help</h4>
+        <a href="#">Help & support</a>
+        <a href="#">FAQs</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Complaints</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Close Finance United States. All rights reserved.</p>
+      <div>
+        <a href="#">Privacy</a>
+        <a href="#">Cookies</a>
+        <a href="#">Legal</a>
+        <a href="#">Fees and charges</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div>
+      <h3>Can we use optional cookies?</h3>
+      <p>Cookies help us keep our website safe and improve your experience. You can manage your cookie preferences at any time.</p>
+    </div>
+    <div class="cookie-actions">
+      <button id="denyCookies">Deny</button>
+      <button id="allowCookies" class="btn btn-primary">Allow all cookies</button>
+    </div>
+  </div>
+
+  <!-- STANDALONE SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const mainNav = document.getElementById('mainNav');
+
+      if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+          mainNav.style.display = mainNav.style.display === 'flex' ? 'none' : 'flex';
+          menuToggle.classList.toggle('open');
+        });
+      }
+
+      // Cookie Banner handling
+      const cookieBanner = document.getElementById('cookieBanner');
+      const allowCookies = document.getElementById('allowCookies');
+      const denyCookies = document.getElementById('denyCookies');
+
+      if (localStorage.getItem('cookie_consent')) {
+        if (cookieBanner) cookieBanner.style.display = 'none';
+      }
+
+      if (allowCookies) {
+        allowCookies.addEventListener('click', () => {
+          localStorage.setItem('cookie_consent', 'allowed');
+          if (cookieBanner) cookieBanner.style.display = 'none';
+        });
+      }
+
+      if (denyCookies) {
+        denyCookies.addEventListener('click', () => {
+          localStorage.setItem('cookie_consent', 'denied');
+          if (cookieBanner) cookieBanner.style.display = 'none';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

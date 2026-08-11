@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Loan Application | Close Finance</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #061c2b;
+      --dark: #09283a;
+      --green: #0569AD;
+      --light-green: #0589CF;
+      --cream: #f5f3ec;
+      --white: #ffffff;
+      --text: #18303d;
+      --muted: #64747d;
+      --border: #dce2df;
+      --container: 1180px;
+      --radius: 4px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Inter", sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    .container { width: min(1180px, calc(100% - 48px)); margin: auto; }
+
+    /* HEADER */
+    .site-header { background: var(--white); position: relative; z-index: 1000; border-bottom: 1px solid #edf0ee; }
+    .header-inner { min-height: 88px; display: flex; align-items: center; gap: 30px; }
+    .logo { display: flex; align-items: center; gap: 10px; white-space: nowrap; flex-shrink: 0; text-decoration: none; }
+    .logo img { width: 34px; height: 34px; object-fit: contain; flex-shrink: 0; }
+    .logo-text { font-family: "Montserrat", sans-serif; font-size: 30px; font-weight: 600; letter-spacing: -1.5px; color: #686A70; white-space: nowrap; }
+
+    /* APPLICATION SECTION */
+    .app-section { padding: 60px 0 100px; background: var(--cream); }
+    .app-container { max-width: 800px; margin: 0 auto; }
+    
+    .app-header { margin-bottom: 40px; text-align: center; }
+    .app-header h1 { color: var(--navy); font-size: 36px; letter-spacing: -1.5px; margin-bottom: 10px; }
+    .app-header p { color: var(--muted); font-size: 16px; }
+
+    .app-card { background: white; padding: 50px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,.04); }
+    
+    .form-section-title { font-size: 20px; color: var(--navy); font-weight: 700; margin: 40px 0 20px; padding-bottom: 10px; border-bottom: 2px solid var(--cream); }
+    .form-section-title:first-child { margin-top: 0; }
+    
+    .form-group { margin-bottom: 25px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .form-group label span { color: #e74c3c; margin-left: 3px; }
+    
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 15px; background: #fafaf8; color: var(--text); outline: none; transition: .2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); background: white; }
+    
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+    
+    .yes-no-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 5px; }
+    .yes-no-option { display: flex; align-items: center; gap: 10px; background: #fafaf8; padding: 12px 15px; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: .2s; }
+    .yes-no-option:hover { border-color: var(--green); }
+    .yes-no-option input { width: auto; }
+    .yes-no-option span { font-size: 14px; font-weight: 500; color: var(--text); }
+
+    .btn-submit { width: 100%; padding: 20px; font-size: 16px; margin-top: 20px; cursor: pointer; color: var(--navy); background: var(--green); font-weight: 800; border: none; text-transform: uppercase; letter-spacing: 1px; }
+    .btn-submit:hover { background: #c8ef49; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: .3s ease; }
+
+    /* MODAL STYLES */
+    .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
+    .modal.show { display: flex; align-items: center; justify-content: center; }
+    .modal-content { background-color: white; padding: 40px; border-radius: 8px; max-width: 600px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .modal-header { font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
+    .modal-body { margin-bottom: 30px; }
+    .modal-body p { color: var(--muted); margin-bottom: 15px; font-size: 14px; }
+    
+    .file-upload-group { margin-bottom: 25px; }
+    .file-upload-label { display: block; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .file-upload-area { border: 2px dashed var(--border); border-radius: 8px; padding: 30px; text-align: center; cursor: pointer; transition: .2s; background: #fafaf8; }
+    .file-upload-area:hover { border-color: var(--green); background: #f5f3ec; }
+    .file-upload-area.dragover { border-color: var(--green); background: #f0f8ff; }
+    .file-upload-area p { color: var(--muted); font-size: 13px; margin: 5px 0; }
+    .file-upload-area .file-name { color: var(--green); font-weight: 600; margin-top: 10px; }
+    
+    .modal-footer { display: flex; gap: 15px; }
+    .btn-modal { flex: 1; padding: 15px; font-size: 14px; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; transition: .2s; }
+    .btn-modal-primary { background: var(--green); color: var(--navy); }
+    .btn-modal-primary:hover { background: #c8ef49; }
+    .btn-modal-secondary { background: #e0e0e0; color: var(--text); }
+    .btn-modal-secondary:hover { background: #d0d0d0; }
+
+    /* FOOTER */
+    .footer { background: var(--dark); color: #a3b1b8; padding: 60px 0 40px; text-align: center; }
+    
+    @media (max-width: 768px) {
+      .form-row, .yes-no-group { grid-template-columns: 1fr; }
+      .app-card { padding: 30px 20px; }
+      .modal-content { padding: 25px; }
+      .file-upload-area { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Close Finance Logo" onerror="this.style.display='none'">
+        <span class="logo-text">Close Finance</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="app-section">
+    <div class="container app-container">
+      
+      <div class="app-header">
+        <h1>Personal Loan Application</h1>
+        <p>Complete the form below to apply for your personal loan</p>
+      </div>
+
+      <div class="app-card">
+        <form id="personalLoanForm" name="personal-loan" method="POST" netlify netlify-honeypot="bot-field">
+          <input type="hidden" name="bot-field">
+          
+          <!-- Personal Information -->
+          <h2 class="form-section-title">Personal Information</h2>
+          
+          <div class="form-group">
+            <label for="fullName">Full Name <span>*</span></label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number <span>*</span></label>
+              <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="e.g. +1 (555) 000-0000" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address <span>*</span></label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address <span>*</span></label>
+            <input type="text" id="address" name="address" placeholder="Street address" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="creditScore">Credit Score <span>*</span></label>
+              <input type="number" id="creditScore" name="creditScore" placeholder="e.g. 750" required>
+            </div>
+            <div class="form-group">
+              <label for="ssn">SSN <span>*</span></label>
+              <input type="text" id="ssn" name="ssn" placeholder="XXX-XX-XXXX" required>
+            </div>
+          </div>
+
+          <!-- Loan Details -->
+          <h2 class="form-section-title">Loan Details</h2>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="loanAmount">Loan Amount <span>*</span></label>
+              <input type="number" id="loanAmount" name="loanAmount" placeholder="Enter desired loan amount" required>
+            </div>
+            <div class="form-group">
+              <label for="idCardType">ID Card Type <span>*</span></label>
+              <select id="idCardType" name="idCardType" required>
+                <option value="">Select ID type</option>
+                <option value="drivers-license">Driver's License</option>
+                <option value="passport">Passport</option>
+                <option value="national-id">National ID</option>
+                <option value="state-id">State ID</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="loanPurpose">What is the purpose of this loan? <span>*</span></label>
+            <input type="text" id="loanPurpose" name="loanPurpose" placeholder="e.g., Debt consolidation, Home improvement, etc." required>
+          </div>
+
+          <div class="form-group">
+            <label for="loanTerm">Preferred Loan Term <span>*</span></label>
+            <select id="loanTerm" name="loanTerm" required>
+              <option value="">Select term</option>
+              <option value="12">12 Months</option>
+              <option value="24">24 Months</option>
+              <option value="36">36 Months</option>
+              <option value="48">48 Months</option>
+              <option value="60">60 Months</option>
+            </select>
+          </div>
+
+          <!-- Address & Employment History -->
+          <h2 class="form-section-title">Address & Employment History</h2>
+          
+          <div class="form-group">
+            <label for="addressHistory">Previous Addresses (Last 2 years) <span>*</span></label>
+            <textarea id="addressHistory" name="addressHistory" placeholder="List any previous addresses from the last 2 years" rows="3" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="employmentHistory">Employment History <span>*</span></label>
+            <textarea id="employmentHistory" name="employmentHistory" placeholder="Describe your employment history" rows="3" required></textarea>
+          </div>
+
+          <!-- Financial Information -->
+          <h2 class="form-section-title">Financial Information</h2>
+          
+          <div class="form-group">
+            <label>Home Line of Equity <span>*</span></label>
+            <div class="yes-no-group">
+              <label class="yes-no-option">
+                <input type="radio" name="homeLineOfEquity" value="yes" required>
+                <span>Yes</span>
+              </label>
+              <label class="yes-no-option">
+                <input type="radio" name="homeLineOfEquity" value="no">
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Credit Card <span>*</span></label>
+            <div class="yes-no-group">
+              <label class="yes-no-option">
+                <input type="radio" name="creditCard" value="yes" required>
+                <span>Yes</span>
+              </label>
+              <label class="yes-no-option">
+                <input type="radio" name="creditCard" value="no">
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Have Previous Debt? <span>*</span></label>
+            <div class="yes-no-group">
+              <label class="yes-no-option">
+                <input type="radio" name="previousDebt" value="yes" required>
+                <span>Yes</span>
+              </label>
+              <label class="yes-no-option">
+                <input type="radio" name="previousDebt" value="no">
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Have a Job? <span>*</span></label>
+            <div class="yes-no-group">
+              <label class="yes-no-option">
+                <input type="radio" name="haveJob" value="yes" required>
+                <span>Yes</span>
+              </label>
+              <label class="yes-no-option">
+                <input type="radio" name="haveJob" value="no">
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="monthlyIncome">Monthly Income <span>*</span></label>
+              <input type="number" id="monthlyIncome" name="monthlyIncome" placeholder="Enter monthly income" required>
+            </div>
+            <div class="form-group">
+              <label for="annualIncome">Annual Income <span>*</span></label>
+              <input type="number" id="annualIncome" name="annualIncome" placeholder="Enter annual income" required>
+            </div>
+          </div>
+
+          <button type="button" class="btn-submit" id="submitBtn">Submit Application</button>
+
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- DOCUMENT UPLOAD MODAL -->
+  <div id="documentModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">Upload Required Documents</div>
+      <div class="modal-body">
+        <p>To complete your personal loan application, please upload the following documents:</p>
+        
+        <!-- ID Front -->
+        <div class="file-upload-group">
+          <label class="file-upload-label">ID Card — Front <span>*</span></label>
+          <div class="file-upload-area" id="idFrontArea">
+            <p>📄 Drag & drop or click to upload</p>
+            <p style="font-size: 12px;">PDF, PNG, JPG, DOC (Max 10MB)</p>
+            <input type="file" id="idFront" name="idFront" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx" style="display: none;">
+            <div class="file-name" id="idFrontName"></div>
+          </div>
+        </div>
+
+        <!-- ID Back -->
+        <div class="file-upload-group">
+          <label class="file-upload-label">ID Card — Back <span>*</span></label>
+          <div class="file-upload-area" id="idBackArea">
+            <p>📄 Drag & drop or click to upload</p>
+            <p style="font-size: 12px;">PDF, PNG, JPG, DOC (Max 10MB)</p>
+            <input type="file" id="idBack" name="idBack" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx" style="display: none;">
+            <div class="file-name" id="idBackName"></div>
+          </div>
+        </div>
+
+        <!-- Selfie -->
+        <div class="file-upload-group">
+          <label class="file-upload-label">Selfie <span>*</span></label>
+          <div class="file-upload-area" id="selfieArea">
+            <p>📸 Drag & drop or click to upload</p>
+            <p style="font-size: 12px;">PNG, JPG (Max 10MB)</p>
+            <input type="file" id="selfie" name="selfie" accept=".png,.jpg,.jpeg" style="display: none;">
+            <div class="file-name" id="selfieName"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button class="btn-modal btn-modal-secondary" id="cancelBtn">Cancel</button>
+        <button class="btn-modal btn-modal-primary" id="confirmBtn">Confirm & Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Close Finance. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('personalLoanForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const modal = document.getElementById('documentModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const confirmBtn = document.getElementById('confirmBtn');
+
+    // File upload handlers
+    const fileInputs = {
+      idFront: { input: document.getElementById('idFront'), area: document.getElementById('idFrontArea'), name: document.getElementById('idFrontName') },
+      idBack: { input: document.getElementById('idBack'), area: document.getElementById('idBackArea'), name: document.getElementById('idBackName') },
+      selfie: { input: document.getElementById('selfie'), area: document.getElementById('selfieArea'), name: document.getElementById('selfieName') }
+    };
+
+    // Setup file upload areas
+    Object.values(fileInputs).forEach(({ input, area, name }) => {
+      area.addEventListener('click', () => input.click());
+      
+      input.addEventListener('change', (e) => {
+        if (e.target.files[0]) {
+          name.textContent = '✓ ' + e.target.files[0].name;
+          area.style.borderColor = 'var(--green)';
+        }
+      });
+
+      area.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        area.classList.add('dragover');
+      });
+
+      area.addEventListener('dragleave', () => {
+        area.classList.remove('dragover');
+      });
+
+      area.addEventListener('drop', (e) => {
+        e.preventDefault();
+        area.classList.remove('dragover');
+        if (e.dataTransfer.files[0]) {
+          input.files = e.dataTransfer.files;
+          name.textContent = '✓ ' + e.dataTransfer.files[0].name;
+          area.style.borderColor = 'var(--green)';
+        }
+      });
+    });
+
+    // Submit button click
+    submitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (form.checkValidity()) {
+        modal.classList.add('show');
+      } else {
+        form.reportValidity();
+      }
+    });
+
+    // Cancel button
+    cancelBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
+    });
+
+    // Confirm button
+    confirmBtn.addEventListener('click', async () => {
+      const idFrontFile = fileInputs.idFront.input.files[0];
+      const idBackFile = fileInputs.idBack.input.files[0];
+      const selfieFile = fileInputs.selfie.input.files[0];
+
+      if (!idFrontFile || !idBackFile || !selfieFile) {
+        alert('Please upload all required documents');
+        return;
+      }
+
+      // Create FormData for file upload
+      const formData = new FormData(form);
+      formData.append('idFront', idFrontFile);
+      formData.append('idBack', idBackFile);
+      formData.append('selfie', selfieFile);
+
+      // Submit form (Netlify will handle it)
+      form.submit();
+      
+      // Show success message
+      setTimeout(() => {
+        alert('Application submitted successfully! Our team will review your documents and contact you soon.');
+        window.location.href = 'index.html';
+      }, 1000);
+    });
+
+    // Close modal on outside click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+      }
+    });
+  </script>
+
+</body>
+</html>

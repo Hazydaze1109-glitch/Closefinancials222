@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Close Finance | Channel Islands</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #061c2b;
+      --dark: #09283a;
+      --green: #0569AD;
+      --light-green: #0589CF;
+      --cream: #f5f3ec;
+      --white: #ffffff;
+      --text: #18303d;
+      --muted: #64747d;
+      --border: #dce2df;
+      --container: 1180px;
+      --radius: 4px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Inter", sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    .container { width: min(1180px, calc(100% - 48px)); margin: auto; }
+
+    /* HEADER */
+    .site-header { background: var(--white); position: relative; z-index: 1000; border-bottom: 1px solid #edf0ee; }
+    .header-inner { min-height: 88px; display: flex; align-items: center; gap: 30px; }
+    .logo { display: flex; align-items: center; gap: 10px; white-space: nowrap; flex-shrink: 0; text-decoration: none; }
+    .logo img { width: 34px; height: 34px; object-fit: contain; flex-shrink: 0; }
+    .logo-text { font-family: "Montserrat", sans-serif; font-size: 30px; font-weight: 600; letter-spacing: -1.5px; color: #686A70; white-space: nowrap; }
+    .main-nav { display: flex; align-items: center; gap: 30px; margin-left: auto; white-space: nowrap; }
+    .main-nav > a, .nav-dropdown button { border: 0; background: transparent; color: var(--navy); font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; padding: 0; }
+    .nav-dropdown { position: relative; white-space: nowrap; }
+    .nav-dropdown button { display: flex; align-items: center; gap: 5px; }
+    .nav-dropdown button span { color: #7b8a8f; margin-left: 2px; font-size: 11px; }
+    .dropdown-menu { position: absolute; top: calc(100% + 20px); left: -15px; width: 220px; background: white; box-shadow: 0 15px 40px rgba(0, 0, 0, .12); padding: 12px; display: none; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 9px 12px; font-size: 13px; white-space: nowrap; }
+    .dropdown-menu a:hover { background: var(--cream); }
+    .header-actions { display: flex; align-items: center; gap: 28px; margin-left: 5px; flex-shrink: 0; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; border: none; padding: 15px 25px; font-weight: 700; font-size: 13px; cursor: pointer; transition: .25s ease; }
+    .btn-primary { color: var(--navy); background: var(--green); }
+    .btn-primary:hover { background: #c8ef49; transform: translateY(-2px); }
+    .btn-outline { color: white; border: 1px solid rgba(255,255,255,.7); background: transparent; }
+    .btn-outline:hover { background: white; color: var(--navy); }
+    .menu-toggle { display: none; background: none; border: 0; }
+
+    /* HERO */
+    .hero { min-height: 480px; position: relative; display: flex; align-items: center; background: linear-gradient(90deg, rgba(5, 28, 43, .96), rgba(5, 28, 43, .68), rgba(5, 28, 43, .18)), url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85") center/cover; }
+    .hero-overlay { position: absolute; inset: 0; }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-text { width: min(750px, 100%); color: white; }
+    .eyebrow { text-transform: uppercase; font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--green); margin-bottom: 17px; }
+    .hero h1 { font-size: clamp(40px, 5vw, 68px); line-height: 1.05; letter-spacing: -3px; margin-bottom: 25px; }
+    .hero h1 span { color: var(--green); }
+    .hero-description { max-width: 650px; font-size: 18px; color: #e8edef; margin-bottom: 35px; }
+
+    /* SIGNUP SECTION */
+    .signup-section { padding: 100px 0; background: var(--cream); }
+    .signup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    
+    h2 { color: var(--navy); font-size: clamp(34px, 4vw, 44px); line-height: 1.05; letter-spacing: -2px; margin-bottom: 20px; }
+    h2 span { color: var(--green); }
+    
+    .signup-copy { font-size: 17px; color: #52656e; margin-bottom: 30px; }
+    
+    .info-box { background: white; padding: 35px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,.04); }
+    .info-box h3 { color: var(--navy); font-size: 20px; margin-bottom: 20px; }
+    .info-box p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+    /* SIGNUP FORM */
+    .signup-form-card { background: white; padding: 40px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,.04); }
+    .signup-form-card h3 { color: var(--navy); font-size: 24px; margin-bottom: 15px; }
+    .signup-form-card > p { color: var(--muted); font-size: 14px; margin-bottom: 25px; }
+    
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .form-group input, .form-group select { width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; background: #fafaf8; color: var(--text); outline: none; transition: border-color .2s; }
+    .form-group input:focus, .form-group select:focus { border-color: var(--green); background: white; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-submit { width: 100%; padding: 16px; font-size: 15px; margin-top: 10px; cursor: pointer; color: var(--navy); background: var(--green); font-weight: 700; }
+    .form-submit:hover { background: #c8ef49; transform: translateY(-2px); }
+    .form-footer { margin-top: 20px; text-align: center; font-size: 14px; color: var(--muted); }
+    .form-footer a { color: var(--green); font-weight: 700; }
+
+    /* FOOTER */
+    .footer { background: var(--dark); color: #a3b1b8; padding: 90px 0 40px; font-size: 14px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .footer-brand .logo-text, .footer-logo { color: white; font-family: "Montserrat", sans-serif; font-size: 26px; font-weight: 600; margin-bottom: 15px; display: inline-block; }
+    .logo-close { color: white; }
+    .logo-finance { color: var(--green); }
+    .footer-brand p { max-width: 320px; margin-top: 15px; color: #9cb0b8; }
+    .footer-column h4 { color: white; font-size: 16px; margin-bottom: 20px; font-weight: 700; }
+    .footer-column a { display: block; margin-bottom: 12px; color: #a3b1b8; transition: color .2s; }
+    .footer-column a:hover { color: white; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 40px; flex-wrap: wrap; gap: 20px; font-size: 13px; }
+    .footer-bottom div { display: flex; gap: 25px; }
+    .footer-bottom a { color: #a3b1b8; }
+    .footer-bottom a:hover { color: white; }
+
+    @media (max-width: 992px) {
+      .signup-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .main-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Close Finance Logo" onerror="this.style.display='none'">
+        <span class="logo-text">Close Finance</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="who-we-are.html">Who we are</a>
+        <div class="nav-dropdown">
+          <button>Business funding <span>⌄</span></button>
+          <div class="dropdown-menu">
+            <a href="business-funding.html">Overview</a>
+            <a href="business-funding.html#machinery">Machinery</a>
+            <a href="business-funding.html#office-upgrades">Office upgrades</a>
+            <a href="business-funding.html#hospitality">Hospitality</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button>Personal loans <span>⌄</span></button>
+          <div class="dropdown-menu">
+            <a href="personal-loans.html">Overview</a>
+            <a href="personal-loans.html#home-improvements">Home improvements</a>
+            <a href="personal-loans.html#holidays">Holidays</a>
+            <a href="personal-loans.html#tuition">University tuition fees</a>
+          </div>
+        </div>
+        <a href="who-we-help.html">Who we help</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Get in touch</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="apply-for-loan.html" class="btn btn-primary">Apply for a loan</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <div class="hero-text">
+          <p class="eyebrow">Join Close Finance</p>
+          <h1>
+            Create your
+            <span>account.</span>
+          </h1>
+          <p class="hero-description">
+            Working with numerous local dealerships in Jersey and Guernsey for over 50 years, we’re specialists in financing cars, motorcycles, and commercial vehicles.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIGNUP SECTION -->
+    <section class="signup-section">
+      <div class="container signup-grid">
+        
+        <div>
+          <p class="eyebrow">Local Experts</p>
+          <h2>Specialists in <span>vehicle finance.</span></h2>
+          <p class="signup-copy">
+            By creating an account, you can manage your applications, track your finance agreements, and access our range of specialist lending services across the Channel Islands.
+          </p>
+
+          <div class="info-box">
+            <h3>Why choose Close Finance?</h3>
+            <p>
+              With over half a century of experience in Jersey and Guernsey, we understand the local market better than anyone. Our dedicated team is here to help you get the keys to your next vehicle or the funding your business needs to grow.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="signup-form-card">
+            <h3>Register Today</h3>
+            <p>Please enter your details to create your secure account.</p>
+
+            <form id="signupForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input type="text" id="firstName" placeholder="First name" required>
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" placeholder="Last name" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Telephone Number</label>
+                <input type="tel" id="phone" placeholder="Phone number" required>
+              </div>
+
+              <div class="form-group">
+                <label for="location">Location</label>
+                <select id="location" required>
+                  <option value="">Please select</option>
+                  <option value="jersey">Jersey</option>
+                  <option value="guernsey">Guernsey</option>
+                  <option disabled>──────────</option>
+                  <option>Alabama</option>
+                  <option>Alaska</option>
+                  <option>Arizona</option>
+                  <option>Arkansas</option>
+                  <option>California</option>
+                  <option>Colorado</option>
+                  <option>Connecticut</option>
+                  <option>Delaware</option>
+                  <option>Florida</option>
+                  <option>Georgia</option>
+                  <option>Hawaii</option>
+                  <option>Idaho</option>
+                  <option>Illinois</option>
+                  <option>Indiana</option>
+                  <option>Iowa</option>
+                  <option>Kansas</option>
+                  <option>Kentucky</option>
+                  <option>Louisiana</option>
+                  <option>Maine</option>
+                  <option>Maryland</option>
+                  <option>Massachusetts</option>
+                  <option>Michigan</option>
+                  <option>Minnesota</option>
+                  <option>Mississippi</option>
+                  <option>Missouri</option>
+                  <option>Montana</option>
+                  <option>Nebraska</option>
+                  <option>Nevada</option>
+                  <option>New Hampshire</option>
+                  <option>New Jersey</option>
+                  <option>New Mexico</option>
+                  <option>New York</option>
+                  <option>North Carolina</option>
+                  <option>North Dakota</option>
+                  <option>Ohio</option>
+                  <option>Oklahoma</option>
+                  <option>Oregon</option>
+                  <option>Pennsylvania</option>
+                  <option>Rhode Island</option>
+                  <option>South Carolina</option>
+                  <option>South Dakota</option>
+                  <option>Tennessee</option>
+                  <option>Texas</option>
+                  <option>Utah</option>
+                  <option>Vermont</option>
+                  <option>Virginia</option>
+                  <option>Washington</option>
+                  <option>West Virginia</option>
+                  <option>Wisconsin</option>
+                  <option>Wyoming</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" placeholder="Create password" required>
+                </div>
+                <div class="form-group">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                </div>
+              </div>
+
+              <button type="submit" class="btn form-submit">Create Account</button>
+
+              <div class="form-footer">
+                Already have an account? <a href="login.html">Log in here</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo">
+            <span class="logo-close">Close</span> <span class="logo-finance">Finance</span>
+          </span>
+          <p>Providing flexible finance solutions for individuals and businesses across the Channel Islands for over 50 years.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Products</h4>
+          <a href="personal-loans.html">Personal loans</a>
+          <a href="business-funding.html">Business funding</a>
+          <a href="#">Motor finance</a>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <a href="who-we-are.html">Who we are</a>
+          <a href="who-we-help.html">Who we help</a>
+          <a href="news.html">News</a>
+        </div>
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <a href="contact.html">Get in touch</a>
+          <a href="#">Jersey office</a>
+          <a href="#">Guernsey office</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Close Finance. All rights reserved.</p>
+        <div>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
