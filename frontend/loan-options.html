@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Choose Loan Type | Close Finance | Channel Islands</title>
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --navy: #061c2b;
@@ -24,15 +22,12 @@
       --container: 1180px;
       --radius: 4px;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: "Inter", sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
     a { color: inherit; text-decoration: none; }
     button, input, select { font: inherit; }
     .container { width: min(1180px, calc(100% - 48px)); margin: auto; }
-
-    /* HEADER */
     .site-header { background: var(--white); position: relative; z-index: 1000; border-bottom: 1px solid #edf0ee; }
     .header-inner { min-height: 88px; display: flex; align-items: center; gap: 30px; }
     .logo { display: flex; align-items: center; gap: 10px; white-space: nowrap; flex-shrink: 0; text-decoration: none; }
@@ -40,8 +35,6 @@
     .logo-text { font-family: "Montserrat", sans-serif; font-size: 30px; font-weight: 600; letter-spacing: -1.5px; color: #686A70; white-space: nowrap; }
     .main-nav { display: flex; align-items: center; gap: 30px; margin-left: auto; white-space: nowrap; }
     .main-nav > a { border: 0; background: transparent; color: var(--navy); font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; padding: 0; }
-
-    /* HERO */
     .hero { min-height: 350px; position: relative; display: flex; align-items: center; background: linear-gradient(90deg, rgba(5, 28, 43, .96), rgba(5, 28, 43, .68), rgba(5, 28, 43, .18)), url("https://images.unsplash.com/photo-1454165833767-02a698d1316a?auto=format&fit=crop&w=1800&q=85") center/cover; }
     .hero-overlay { position: absolute; inset: 0; }
     .hero-content { position: relative; z-index: 2; }
@@ -49,80 +42,57 @@
     .eyebrow { text-transform: uppercase; font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--green); margin-bottom: 17px; }
     .hero h1 { font-size: clamp(36px, 5vw, 60px); line-height: 1.05; letter-spacing: -2px; margin-bottom: 20px; }
     .hero h1 span { color: var(--green); }
-
-    /* OPTIONS SECTION */
     .options-section { padding: 80px 0; background: var(--cream); min-height: 500px; }
     .options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-    
     .option-card { background: white; padding: 50px 40px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,.04); text-align: center; transition: .3s ease; display: flex; flex-direction: column; align-items: center; }
     .option-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(8, 30, 40, .1); border-color: var(--green); }
-    
     .option-icon { width: 80px; height: 80px; background: var(--light-green); color: var(--navy); display: grid; place-items: center; font-size: 32px; border-radius: 50%; margin-bottom: 30px; }
     .option-card h3 { color: var(--navy); font-size: 28px; margin-bottom: 20px; }
     .option-card p { color: var(--muted); font-size: 16px; margin-bottom: 35px; line-height: 1.6; flex-grow: 1; }
-    
     .btn { display: inline-flex; align-items: center; justify-content: center; border: none; padding: 18px 35px; font-weight: 700; font-size: 15px; cursor: pointer; transition: .25s ease; width: 100%; }
     .btn-primary { color: var(--navy); background: var(--green); }
     .btn-primary:hover { background: #c8ef49; transform: translateY(-2px); }
-
     .track-section { margin-top: 50px; padding: 40px; background: #061c2b; color: white; text-align: center; border-radius: 4px; display: none; }
     .track-section h3 { margin-bottom: 15px; font-size: 24px; }
     .track-section p { color: #a3b1b8; margin-bottom: 25px; }
     .btn-track { background: var(--green); color: var(--navy); width: auto; display: inline-block; padding: 15px 40px; text-decoration: none; font-weight: 700; }
-
-    /* FOOTER */
     .footer { background: var(--dark); color: #a3b1b8; padding: 60px 0 40px; font-size: 14px; }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; font-size: 13px; }
     .footer-bottom a { color: #a3b1b8; margin-left: 20px; }
-
-    @media (max-width: 768px) {
-      .options-grid { grid-template-columns: 1fr; }
-      .main-nav { display: none; }
-    }
+    @media (max-width: 768px) { .options-grid { grid-template-columns: 1fr; } .main-nav { display: none; } }
   </style>
 </head>
 <body>
-
-  <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="logo">
         <img src="images/logo.png" alt="Close Finance Logo" onerror="this.style.display='none'">
         <span class="logo-text">Close Finance</span>
       </a>
-
-      <nav class="main-nav">
-        <a href="#" onclick="logout()">Logout</a>
-      </nav>
+      <nav class="main-nav"><a href="#" onclick="logout()">Logout</a></nav>
     </div>
   </header>
 
   <main>
-    <!-- HERO -->
     <section class="hero">
       <div class="hero-overlay"></div>
       <div class="container hero-content">
         <div class="hero-text">
           <p class="eyebrow">Application Portal</p>
-          <h1>
-            Select your 
-            <span>loan type.</span>
-          </h1>
-          <p class="hero-description">
-            Please choose the type of finance you would like to apply for to continue.
-          </p>
+          <h1>Select your <span>loan type.</span></h1>
+          <p class="hero-description">Please choose the type of finance you would like to apply for to continue.</p>
         </div>
       </div>
     </section>
 
-    <!-- OPTIONS SECTION -->
     <section class="options-section">
       <div class="container">
-        
         <div class="options-grid">
           <!-- BUSINESS LOAN -->
           <article class="option-card">
-            <div class="option-icon">🏢</div>
+            <div class="option-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            </div>
             <h3>Business Loans</h3>
             <p>Flexible funding solutions designed to help your business invest, grow, and manage cash flow effectively.</p>
             <a href="apply-business.html" class="btn btn-primary">Apply for Business Loan</a>
@@ -130,61 +100,44 @@
 
           <!-- PERSONAL LOAN -->
           <article class="option-card">
-            <div class="option-icon">👤</div>
+            <div class="option-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
             <h3>Personal Loans</h3>
             <p>Tailored finance for life's important moments, from home improvements and weddings to new vehicles.</p>
             <a href="apply-personal.html" class="btn btn-primary">Apply for Personal Loan</a>
           </article>
         </div>
-
-        <!-- TRACKING SECTION -->
         <div id="trackSection" class="track-section">
           <h3>Track Existing Application</h3>
           <p>You already have an active loan application. Click below to view its current status.</p>
           <a href="loan-status.html" class="btn-track">Track My Loan</a>
         </div>
-
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
         <p>© 2026 Close Finance. All rights reserved.</p>
-        <div>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms & Conditions</a>
-        </div>
+        <div><a href="#">Privacy Policy</a><a href="#">Terms & Conditions</a></div>
       </div>
     </div>
   </footer>
 
   <script src="api-config.js"></script>
   <script>
-    function logout() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      window.location.href = 'login.html';
-    }
-
-    // Check for active application
+    function logout() { localStorage.removeItem('token'); localStorage.removeItem('user'); window.location.href = 'login.html'; }
     async function checkActiveApp() {
       const token = localStorage.getItem('token');
       if (!token) { window.location.href = 'login.html'; return; }
-
       try {
-        const res = await fetch(`${API_URL}/api/loans/my-application`, {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
+        const res = await fetch(`${API_URL}/api/loans/my-application`, { headers: { 'Authorization': `Bearer ${token}` } });
         const app = await res.json();
-        if (app) {
-          document.getElementById('trackSection').style.display = 'block';
-        }
+        if (app) { document.getElementById('trackSection').style.display = 'block'; }
       } catch (err) { console.error(err); }
     }
-
     checkActiveApp();
   </script>
 </body>
