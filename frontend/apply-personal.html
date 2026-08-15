@@ -113,21 +113,24 @@
         </div>
 
         <div class="app-card">
-          <form id="personalLoanForm">
+          <!-- Netlify Form Detection Added -->
+          <form id="personalLoanForm" name="personal-loan" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="personal-loan" />
+            
             <!-- Personal Information -->
             <h2 class="form-section-title">Personal Information</h2>
             <div class="form-group">
               <label for="fullName">Full Name <span>*</span></label>
-              <input type="text" id="fullName" required>
+              <input type="text" id="fullName" name="fullName" required>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="phone">Phone Number <span>*</span></label>
-                <input type="tel" id="phone" required>
+                <input type="tel" id="phone" name="phone" required>
               </div>
               <div class="form-group">
                 <label for="email">Email Address <span>*</span></label>
-                <input type="email" id="email" required>
+                <input type="email" id="email" name="email" required>
               </div>
             </div>
 
@@ -136,11 +139,11 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="loanAmount">Loan Amount <span>*</span></label>
-                <input type="number" id="loanAmount" required>
+                <input type="number" id="loanAmount" name="loanAmount" required>
               </div>
               <div class="form-group">
                 <label for="loanTerm">Preferred Loan Term <span>*</span></label>
-                <select id="loanTerm" required>
+                <select id="loanTerm" name="loanTerm" required>
                   <option value="">Select term</option>
                   <option value="12">12 Months</option>
                   <option value="24">24 Months</option>
@@ -152,7 +155,7 @@
             </div>
             <div class="form-group">
               <label for="loanPurpose">What is the purpose of this loan? <span>*</span></label>
-              <input type="text" id="loanPurpose" required>
+              <input type="text" id="loanPurpose" name="loanPurpose" required>
             </div>
 
             <!-- Financial Information -->
@@ -218,11 +221,11 @@
             <h2 class="form-section-title">History</h2>
             <div class="form-group">
               <label for="addressHistory">Previous Addresses (Last 2 years) <span>*</span></label>
-              <textarea id="addressHistory" class="short-box" required></textarea>
+              <textarea id="addressHistory" name="addressHistory" class="short-box" required></textarea>
             </div>
             <div class="form-group">
               <label for="employmentHistory">Employment History <span>*</span></label>
-              <textarea id="employmentHistory" class="short-box" required></textarea>
+              <textarea id="employmentHistory" name="employmentHistory" class="short-box" required></textarea>
             </div>
 
             <button type="submit" class="btn-submit">Submit Application</button>
@@ -236,7 +239,7 @@
         <h1>Application Received!</h1>
         <div class="success-card">
           <h4>Next Steps: Verification Required</h4>
-          <p>Please email your <strong>ID (Front and Back)</strong> and a <strong>Selfie</strong> to: <span class="email-highlight">lending@closefinanceciusa.com</span></p>
+          <p>Please email your <strong>ID (Front and Back)</strong> and a <strong>Selfie</strong> to: <span class="email-highlight">info@financils.com</span></p>
         </div>
         <a href="loan-status.html" class="btn-track">Track My Loan</a>
       </div>
@@ -251,33 +254,27 @@
       const token = localStorage.getItem('token');
       if (!token) { alert('Please log in first'); window.location.href='login.html'; return; }
 
-      const body = {
-        fullName: document.getElementById('fullName').value,
-        phone: document.getElementById('phone').value,
-        email: document.getElementById('email').value,
-        loanAmount: document.getElementById('loanAmount').value,
-        loanPurpose: document.getElementById('loanPurpose').value,
-        loanTerm: document.getElementById('loanTerm').value,
-        addressHistory: document.getElementById('addressHistory').value,
-        employmentHistory: document.getElementById('employmentHistory').value,
-        homeLineOfEquity: document.querySelector('input[name="homeLineOfEquity"]:checked').value,
-        creditCard: document.querySelector('input[name="creditCard"]:checked').value,
-        previousDebt: document.querySelector('input[name="previousDebt"]:checked').value,
-        haveJob: document.querySelector('input[name="haveJob"]:checked').value
-      };
+      const formData = new FormData(form);
+      const body = Object.fromEntries(formData.entries());
 
       try {
-        const res = await fetch(`${API_URL}/api/loans/personal`, {
+        // 1. Send to Vercel (Database)
+        const vercelRes = await fetch(`${API_URL}/api/loans/personal`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
           body: JSON.stringify(body)
         });
-        const data = await res.json();
-        if (data.success) {
-          document.getElementById('formContainer').style.display = 'none';
-          document.getElementById('successMessage').style.display = 'block';
-          window.scrollTo(0, 0);
-        } else { alert(data.error); }
+        
+        // 2. Send to Netlify (Dashboard)
+        await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString(),
+        });
+
+        document.getElementById('formContainer').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+        window.scrollTo(0, 0);
       } catch (err) { alert('Failed to connect to server'); }
     });
   </script>
