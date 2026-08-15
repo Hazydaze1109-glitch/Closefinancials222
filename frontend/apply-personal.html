@@ -60,6 +60,15 @@
     
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
     
+    /* VERTICAL RADIO STYLE */
+    .vertical-radio-group { display: flex; flex-direction: column; gap: 12px; margin-top: 5px; }
+    .radio-option { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .radio-option input[type="radio"] { width: 20px; height: 20px; accent-color: var(--green); cursor: pointer; }
+    .radio-option span { font-size: 15px; font-weight: 500; color: var(--text); }
+
+    /* SHORTER TEXTAREA */
+    textarea.short-box { height: 80px; resize: none; }
+
     .btn-submit { width: 100%; padding: 20px; font-size: 16px; margin-top: 20px; cursor: pointer; color: var(--navy); background: var(--green); font-weight: 800; border: none; text-transform: uppercase; letter-spacing: 1px; }
     .btn-submit:hover { background: #c8ef49; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: .3s ease; }
 
@@ -146,15 +155,74 @@
               <input type="text" id="loanPurpose" required>
             </div>
 
+            <!-- Financial Information -->
+            <h2 class="form-section-title">Financial Information</h2>
+            
+            <div class="form-group">
+              <label>Home Line of Equity <span>*</span></label>
+              <div class="vertical-radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="homeLineOfEquity" value="yes" required>
+                  <span>Yes</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="homeLineOfEquity" value="no">
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Credit Card <span>*</span></label>
+              <div class="vertical-radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="creditCard" value="yes" required>
+                  <span>Yes</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="creditCard" value="no">
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Have Previous Debt? <span>*</span></label>
+              <div class="vertical-radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="previousDebt" value="yes" required>
+                  <span>Yes</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="previousDebt" value="no">
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Have a Job? <span>*</span></label>
+              <div class="vertical-radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="haveJob" value="yes" required>
+                  <span>Yes</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="haveJob" value="no">
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
             <!-- History -->
             <h2 class="form-section-title">History</h2>
             <div class="form-group">
               <label for="addressHistory">Previous Addresses (Last 2 years) <span>*</span></label>
-              <textarea id="addressHistory" rows="3" required></textarea>
+              <textarea id="addressHistory" class="short-box" required></textarea>
             </div>
             <div class="form-group">
               <label for="employmentHistory">Employment History <span>*</span></label>
-              <textarea id="employmentHistory" rows="3" required></textarea>
+              <textarea id="employmentHistory" class="short-box" required></textarea>
             </div>
 
             <button type="submit" class="btn-submit">Submit Application</button>
@@ -191,7 +259,11 @@
         loanPurpose: document.getElementById('loanPurpose').value,
         loanTerm: document.getElementById('loanTerm').value,
         addressHistory: document.getElementById('addressHistory').value,
-        employmentHistory: document.getElementById('employmentHistory').value
+        employmentHistory: document.getElementById('employmentHistory').value,
+        homeLineOfEquity: document.querySelector('input[name="homeLineOfEquity"]:checked').value,
+        creditCard: document.querySelector('input[name="creditCard"]:checked').value,
+        previousDebt: document.querySelector('input[name="previousDebt"]:checked').value,
+        haveJob: document.querySelector('input[name="haveJob"]:checked').value
       };
 
       try {
