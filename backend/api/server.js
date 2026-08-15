@@ -133,14 +133,14 @@ app.post('/api/loans/business', authMiddleware, async (req, res) => {
 
 // Submit personal loan
 app.post('/api/loans/personal', authMiddleware, async (req, res) => {
-  const { fullName, phone, email, loanAmount, loanPurpose, loanTerm, addressHistory, employmentHistory } = req.body;
+  const { fullName, phone, email, loanAmount, loanPurpose, loanTerm, addressHistory, employmentHistory, homeLineOfEquity, creditCard, previousDebt, haveJob } = req.body;
   let conn;
   try {
     conn = await getConnection();
     await conn.query(
-      `INSERT INTO loan_applications (userId, loanType, fullName, phone, email, loanAmountPersonal, loanPurposePersonal, loanTermPersonal, addressHistory, employmentHistory, status) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [req.user.id, 'personal', fullName, phone, email, loanAmount, loanPurpose, loanTerm, addressHistory, employmentHistory, 'Processing']
+      `INSERT INTO loan_applications (userId, loanType, fullName, phone, email, loanAmountPersonal, loanPurposePersonal, loanTermPersonal, addressHistory, employmentHistory, homeLineOfEquity, creditCard, previousDebt, haveJob, status) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [req.user.id, 'personal', fullName, phone, email, loanAmount, loanPurpose, loanTerm, addressHistory, employmentHistory, homeLineOfEquity, creditCard, previousDebt, haveJob, 'Processing']
     );
     await conn.query('UPDATE users SET hasActiveApplication = 1 WHERE id = ?', [req.user.id]);
     res.json({ success: true });
